@@ -1,0 +1,19 @@
+{
+  "name": "former-fusion",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/react": "^4.2.4",
+    "astro": "^5.7.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "three": "^0.175.0",
+    "three-stdlib": "^2.35.15"
+  }
+}
