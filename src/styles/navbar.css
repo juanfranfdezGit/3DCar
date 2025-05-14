@@ -4,7 +4,7 @@ nav {
     position: fixed;
     top: 30px;
     left: 0;
-    height: 10vh;
+    height: 100px;
     width: 100vw;
     display: flex;
     justify-content: center;

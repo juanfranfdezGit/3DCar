@@ -1,5 +1,8 @@
 @import './variables.css';
 @import './navbar.css';
+@import './leftsidebar.css';
+@import './rightsidebar.css';
+@import './footer.css';
 
 * {
     margin: 0;

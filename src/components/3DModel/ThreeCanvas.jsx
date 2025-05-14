@@ -93,12 +93,6 @@ export default function ThreeCanvas() {
     };
   }, []);
 
-  const step02 = () => {
-    if (modelRef.current) {
-      targetRotationY.current = -Math.PI / 1.8;
-    }
-  };
-
   return (
     <div style={{ width: '100%', height: '100vh' }}>
       <div ref={mountRef} style={{ width: '100%', height: '100%' }} />

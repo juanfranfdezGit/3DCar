@@ -1,9 +1,10 @@
 :root {
-  --back-cards: #000000a1;
+  --back-cards: #00000056;
   --back-scene: #0e0101;
 
   --text-primary: #e7e7e7;
+  --text-secondary: #b12121;
 
   --shadow-inset-button: #e93b3b;
-  --shadow-logo: #e93b3b;
+  --shadow-logo: #cfcfcf;
 }

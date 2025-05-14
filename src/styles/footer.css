@@ -1,0 +1,16 @@
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 140px;
+    padding-top: 50px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+    
+    p {
+        color: var(--text-primary);
+    }
+}

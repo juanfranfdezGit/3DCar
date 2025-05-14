@@ -1,0 +1,58 @@
+.leftSidebar {
+    position: fixed;
+    left: 20px;
+    top: 280px;
+    width: 15vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    z-index: 20;
+    font-weight: 700;
+
+    .location {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        align-items: center;
+        margin-top: 80px;
+
+        p {
+            color: var(--text-primary);
+            margin-bottom: -5px;
+
+            span {
+                color: var(--text-secondary);
+            }
+        }
+
+        img {
+            width: 240px;
+            filter: drop-shadow(0 0 1px var(--shadow-logo));
+        }
+    }
+
+    .colorList {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+
+        li {
+            width: 10vw;
+            text-align: center;
+            list-style: none;
+            padding: 16px 20px;
+            font-size: 1.2rem;
+            background: var(--back-cards);
+            color: var(--text-primary);
+            cursor: pointer;
+            border-radius: 20px;
+            transition: all .2s;
+
+            &:hover {
+                box-shadow: inset 0 0 15px var(--shadow-inset-button);
+            }
+        }
+    }
+}
