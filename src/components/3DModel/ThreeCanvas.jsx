@@ -1,11 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three-stdlib';
 
 export default function ThreeCanvas() {
   const mountRef = useRef(null);
-  const modelRef = useRef(null); // Nueva referencia para el modelo
-  const [model, setModel] = useState(null);
+  const modelRef = useRef(null);
   const targetRotationY = useRef(null);
 
   useEffect(() => {
@@ -13,28 +12,56 @@ export default function ThreeCanvas() {
 
     const scene = new THREE.Scene();
 
-    const camera = new THREE.PerspectiveCamera(75, mount.clientWidth / mount.clientHeight, 0.1, 1000);
-    camera.position.set(-70, 18, 100);
+    const camera = new THREE.PerspectiveCamera(
+      10,
+      mount.clientWidth / mount.clientHeight,
+      0.1,
+      1000
+    );
+    camera.position.set(-10, 4, 18); // izquierda, arriba, atrás
+    camera.lookAt(0, 0, 0);        // mira al centro de la escena
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(mount.clientWidth, mount.clientHeight);
     mount.appendChild(renderer.domElement);
 
-    scene.add(new THREE.AmbientLight(0xffffff, 1));
-    const light = new THREE.DirectionalLight(0xffffff, 1);
-    light.position.set(1, 23, 225);
-    scene.add(light);
+    // 1. Luz principal (simula un softbox grande al frente)
+    const keyLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    keyLight.position.set(5, 5, 5);
+    scene.add(keyLight);
+
+    // 2. Luz de relleno (suaviza las sombras)
+    const fillLight = new THREE.DirectionalLight(0xffffff, 0.6);
+    fillLight.position.set(-5, 2, 5);
+    scene.add(fillLight);
+
+    // 3. Luz de contra (da brillo al borde del objeto)
+    const backLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    backLight.position.set(0, 5, -5);
+    scene.add(backLight);
+
+    // 4. Luz ambiental suave para completar
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
+    scene.add(ambientLight);
+
+    const helper1 = new THREE.DirectionalLightHelper(keyLight, 1);
+    scene.add(helper1);
+
+    const helper2 = new THREE.DirectionalLightHelper(fillLight, 1);
+    scene.add(helper2);
+
+    const helper3 = new THREE.DirectionalLightHelper(backLight, 1);
+    scene.add(helper3);
 
     const loader = new GLTFLoader();
-    loader.load('/porsche.glb', (gltf) => {
+    loader.load('/mclaren.glb', (gltf) => {
       const loadedModel = gltf.scene;
-      
-      loadedModel.scale.set(30.5, 24.7, 30.5);
-      loadedModel.rotation.y = -Math.PI / 2.8;
-      scene.add(loadedModel);
 
-      setModel(loadedModel); // Para animación
-      modelRef.current = loadedModel; // Para animación
+        loadedModel.position.y = -0.5; // 🔼 Subir 5 unidades en el eje Y
+
+      // Sin cambios de escala, rotación ni posición
+      scene.add(loadedModel);
+      modelRef.current = loadedModel;
       targetRotationY.current = loadedModel.rotation.y;
     });
 
@@ -66,33 +93,15 @@ export default function ThreeCanvas() {
     };
   }, []);
 
-  // useEffect(() => {
-  //   if (model) {
-  //     model.traverse((child) => {
-  //       if (child.isMesh && child.material instanceof THREE.MeshStandardMaterial) {
-  //         child.material.color.set(color);
-  //       }
-  //     });
-  //   }
-  // }, [color, model]);
-
   const step02 = () => {
     if (modelRef.current) {
-      targetRotationY.current = -Math.PI / 1.8; // Cambia el ángulo deseado aquí
+      targetRotationY.current = -Math.PI / 1.8;
     }
   };
 
   return (
     <div style={{ width: '100%', height: '100vh' }}>
       <div ref={mountRef} style={{ width: '100%', height: '100%' }} />
-      {/* <div style={{ display: 'flex', gap: '20px', position: 'absolute', top: '40px', left: '47vw' }}>
-        <button style={{ width: '40px', height: '40px', background: '#ff0000', border: 'none', cursor: 'pointer' }} onClick={() => handleColorChange('#ff0000')}></button>
-        <button style={{ width: '40px', height: '40px', background: '#00ff00', border: 'none', cursor: 'pointer' }} onClick={() => handleColorChange('#00ff00')}></button>
-        <button style={{ width: '40px', height: '40px', background: '#0000ff', border: 'none', cursor: 'pointer' }} onClick={() => handleColorChange('#0000ff')}></button>
-      </div> */}
-      <div style={{ display: 'flex', gap: '20px', position: 'absolute', bottom: '120px', left: '50vw' }}>
-        <button style={{ width: '40px', height: '40px', border: 'none', cursor: 'pointer' }} onClick={step02}>next</button>
-      </div>
     </div>
   );
 }
