@@ -1,25 +1,9 @@
 :root {
-    /* DARK BACKGORUNDS */
-    --color-bg-primary: #0f0f1a;
-    --color-bg-secondary: #1a1a2e;
-    --color-bg-glass: rgba(15, 15, 26, 0.7);
-  
-    /* CYBERPUNK COLORS */
-    --color-cyber-pink: #ff3cac;
-    --color-cyber-blue: #5ee7df;
-    --color-cyber-purple: #8a2be2;
-    --color-cyber-neon: #00fff7;
-  
-    /* GRADIENTS */
-    --gradient-cyberpunk: linear-gradient(135deg, #ff3cac 0%, #784ba0 50%, #2b86c5 100%);
-    --gradient-neon: linear-gradient(90deg, #00fff7, #ff3cac);
-  
-    /* TEXTS */
-    --color-text-primary: #ffffff;
-    --color-text-secondary: #c0c0c0;
-    --color-text-accent: var(--color-cyber-pink);
-  
-    /* SHADOWS AND EFFECTS */
-    --shadow-neon-pink: 0 0 10px #ff3cac;
-    --shadow-neon-blue: 0 0 10px #5ee7df;
-  }
+  --back-cards: #000000a1;
+  --back-scene: #0e0101;
+
+  --text-primary: #e7e7e7;
+
+  --shadow-inset-button: #e93b3b;
+  --shadow-logo: #e93b3b;
+}

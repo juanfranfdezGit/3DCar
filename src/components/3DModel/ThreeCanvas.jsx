@@ -27,7 +27,7 @@ export default function ThreeCanvas() {
 
     // 1. Luz principal (simula un softbox grande al frente)
     const keyLight = new THREE.DirectionalLight(0xffffff, 1.2);
-    keyLight.position.set(5, 5, 5);
+    keyLight.position.set(15, 15, -5);
     scene.add(keyLight);
 
     // 2. Luz de relleno (suaviza las sombras)
@@ -44,14 +44,14 @@ export default function ThreeCanvas() {
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
     scene.add(ambientLight);
 
-    const helper1 = new THREE.DirectionalLightHelper(keyLight, 1);
-    scene.add(helper1);
+    // const helper1 = new THREE.DirectionalLightHelper(keyLight, 1);
+    // scene.add(helper1);
 
-    const helper2 = new THREE.DirectionalLightHelper(fillLight, 1);
-    scene.add(helper2);
+    // const helper2 = new THREE.DirectionalLightHelper(fillLight, 1);
+    // scene.add(helper2);
 
-    const helper3 = new THREE.DirectionalLightHelper(backLight, 1);
-    scene.add(helper3);
+    // const helper3 = new THREE.DirectionalLightHelper(backLight, 1);
+    // scene.add(helper3);
 
     const loader = new GLTFLoader();
     loader.load('/mclaren.glb', (gltf) => {
